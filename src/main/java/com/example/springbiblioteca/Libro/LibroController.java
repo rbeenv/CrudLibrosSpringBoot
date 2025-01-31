@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/libros")
@@ -44,10 +45,10 @@ public class LibroController {
     //POST --> INSERT
     @PostMapping("/libro")
     public ResponseEntity<Libro> addLibro(@Valid @RequestBody Libro libro){
-        System.out.println("Entra aqui");
         Libro libroPersistido = this.repositorioLibros.save(libro);
         return ResponseEntity.ok().body(libroPersistido);
     }
+
 
     //POST con Form normal, se trabajará con JSONs normalmente...
     @PostMapping(value = "/libroForm", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
